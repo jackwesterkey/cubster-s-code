@@ -1,0 +1,71 @@
+using UnityEngine;
+using System.Collections;
+
+public class GunReload3 : MonoBehaviour
+{
+    public AmmoManager1 ammoManager1; // Reference to the AmmoManager1 script
+
+    private bool isRotating = false;
+    private float rotation2 = 360.0f; // Assuming 180 degrees for the second rotation
+
+    private void OnEnable()
+    {
+        isRotating = false; // Reset isRotating when the script is reloaded
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R) && !isRotating)
+        {
+            isRotating = true;
+            StartCoroutine(RotateAndReloadCoroutine(rotation2));
+        }
+    }
+
+    private IEnumerator RotateAndReloadCoroutine(float endRotation)
+    {
+        float rotationDuration = 1.0f; // Adjust this value to control the duration of the rotation
+        float reloadDuration = 1.0f;   // Adjust this value to control the duration of the reloading
+
+        float rotationT = 0f;
+        float reloadT = 0f;
+
+        float startRotation = transform.localEulerAngles.z;
+        float targetRotation = startRotation + endRotation;
+
+        while (rotationT < 1f)
+        {
+            rotationT += Time.deltaTime / rotationDuration;
+            float currentRotation = Mathf.Lerp(startRotation, targetRotation, rotationT);
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, currentRotation);
+            yield return null;
+        }
+
+        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, targetRotation);
+        isRotating = false;
+
+        // Call the ReloadGun method in the AmmoManager1 script to handle actual reloading logic
+        StartCoroutine(ReloadCoroutine(reloadDuration));
+    }
+
+    private IEnumerator ReloadCoroutine(float duration)
+    {
+        float t = 0f;
+
+        // Call the ReloadGun method in the AmmoManager1 script to handle actual reloading logic
+        if (ammoManager1 != null)
+        {
+            ammoManager1.ReloadGun();
+        }
+        else
+        {
+            Debug.LogWarning("AmmoManager1 reference is not assigned in GunReload3 script.");
+        }
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime / duration;
+            yield return null;
+        }
+    }
+}
