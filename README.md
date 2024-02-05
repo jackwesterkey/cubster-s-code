@@ -1,5 +1,7 @@
 # cubster-s-code
 This all the code i made and changed to work for cubesters.
+this code i made is a mass and made it myself with help with chatgpt to find out when i was making the code to fix the errors i had when i made the it and did have it write some code for me and then i edited it
+
 credits: the respective links included:
 1. Cinema Suite:
     - [Unity Glitch](https://github.com/staffantan/unityglitch)
