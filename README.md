@@ -1,6 +1,6 @@
 # cubster-s-code
 This all the code i made myself and changed to work for cubesters.
-this code i made is a mass and made it myself with help with chatgpt to find out when i was making the code to fix the errors i had when i made the it and did have it write some code for fixs myself and then i edited it
+this code i made is a mass and made it myself with help with chatgpt to find out when i was making errors to the code and needed to fix it, i also had to fix itwrite some fixs for code myself and then i edited it to make it work again
 the models i used SpatialMapping for some
 credits: the respective links included:
 1. Cinema Suite:
